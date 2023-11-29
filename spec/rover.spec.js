@@ -49,7 +49,6 @@ it("constructor sets position and default values for mode and generatorWatts", f
     let message = new Message('Changing mode to LOW_POWER', commands);
     let rover = new Rover(98382);
     let response = rover.receiveMessage(message);
-    //complete; done
     expect(rover.mode).toEqual('LOW_POWER');
     expect(response.results[0].completed).toEqual(true);
    
