@@ -41,6 +41,7 @@ it("constructor sets position and default values for mode and generatorWatts", f
     let response = rover.receiveMessage(message);
     let roverInfo = {mode: (rover.mode), generatorWatts: (rover.generatorWatts), position: (rover.position)};
     expect(response.results[0].roverStatus).toEqual(roverInfo);
+    expect(response.results[0].completed).toEqual(true);
   });
 //test 11 responds to mode change 
   it("responds correctly to mode change command", function() {
@@ -48,7 +49,10 @@ it("constructor sets position and default values for mode and generatorWatts", f
     let message = new Message('Changing mode to LOW_POWER', commands);
     let rover = new Rover(98382);
     let response = rover.receiveMessage(message);
+    //complete; done
     expect(rover.mode).toEqual('LOW_POWER');
+    expect(response.results[0].completed).toEqual(true);
+   
   });
 //test 12 check the move command; low power mode cant be moved in this state (book) 
   it("responds with false completed value when attempting to move in LOW_POWER mode", function() {
@@ -57,6 +61,7 @@ it("constructor sets position and default values for mode and generatorWatts", f
     let rover = new Rover(98382);
     let response = rover.receiveMessage(message);
     expect(response.results[1]).toEqual({completed: false});
+    
   });
 //test 13 
   it("responds with position for move command", function() {
@@ -65,6 +70,7 @@ it("constructor sets position and default values for mode and generatorWatts", f
     let rover = new Rover(98382);
     let response = rover.receiveMessage(message);
     expect(rover.position).toEqual(2000);
+    expect(response.results[0].completed).toEqual(true);
   });
 
 });

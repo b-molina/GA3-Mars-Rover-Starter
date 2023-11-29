@@ -10,9 +10,14 @@ describe("Command class", function() {
 
   //test 2
   it("constructor sets command type", function() {
+    let setCommand = new Command('Message')
+    expect(setCommand.commandType).toEqual('Message')
   });
   //test 3
   it("constructor sets a value passed in as the 2nd argument", function() {
+    let newValue = new Command('Value', 'Value 2')
+    console.log(newValue)
+    expect(newValue.value).toEqual('Value 2')
   });
 
 });
